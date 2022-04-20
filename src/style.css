@@ -1,0 +1,68 @@
+body
+{
+  background: linear-gradient(to bottom right, #56d0f5, #ad7b1d);
+  height: 100vh;
+  margin-top: -70px;
+  background-size: "cover";
+  background-repeat:no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel--outer
+{
+  position: relative;
+  padding: 15px;
+  width: 260px;
+  min-height: 380px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(50px);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
+}
+
+.panel--inner
+{
+  position: relative;
+  padding: 1px;
+  width: 99%;
+  min-height: 380px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(1px);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
+}
+
+.textfield
+{
+  padding: 20px;
+  font-weight: 100;
+  color: white;
+  vertical-align: text-top;
+  text-shadow: 2px 2px #0000001b;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1px);
+  border-radius: 20px;
+  height: 200px;
+  border: none;
+  outline: none;
+  box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
+  border-radius: 20px;
+}
+
+
+form
+{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  column-gap: 300px;
+}
+
+.btn
+{
+  padding: 200px;
+}
