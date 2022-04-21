@@ -54,7 +54,7 @@ body
 
 .textfield
 {
-  padding: 5px;
+  padding: 7%;
   resize: none;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -62,7 +62,6 @@ body
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(1px);
   border-radius: 20px;
-  /* height: 250px; */
   width: 99%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   outline: none;
@@ -73,12 +72,14 @@ body
 
 form
 {
-  padding: 20px;
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-bottom: 7%;
   display: flex;
   gap: 20px;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   flex-wrap: wrap;
 }
 
@@ -90,4 +91,10 @@ form
   width: 45%;
   max-width: 200px;
   padding: 10px;
+}
+
+.title
+{
+  padding-left: 7%;
+  color: white;
 }
