@@ -1,3 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+*
+{
+  font-family: "Poppins", sans-serif;
+}
+
+#root
+{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body
 {
   background: linear-gradient(to bottom right, #56d0f5, #ad7b1d);
@@ -14,41 +31,42 @@ body
 .panel--outer
 {
   position: relative;
-  padding: 15px;
-  width: 260px;
-  min-height: 380px;
+  padding: 5px;
+  width: 75%;
+  max-width: 450px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(50px);
   border-radius: 20px;
   box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .panel--inner
 {
-  position: relative;
-  padding: 1px;
-  width: 99%;
-  min-height: 380px;
+  width: 100%;
+  height: 100%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(1px);
   border-radius: 20px;
-  box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
 }
 
 .textfield
 {
-  padding: 20px;
+  padding: 5px;
+  resize: none;
+  font-family: "Poppins", sans-serif;
   font-weight: 100;
-  color: white;
-  vertical-align: text-top;
-  text-shadow: 2px 2px #0000001b;
+  color: black;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(1px);
   border-radius: 20px;
-  height: 200px;
-  border: none;
+  /* height: 250px; */
+  width: 99%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   outline: none;
-  box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
+  box-shadow: 0 25px 45px rgb(0 0 0 / 10%);
   border-radius: 20px;
 }
 
@@ -57,12 +75,19 @@ form
 {
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+  flex-direction: row;
   justify-content: center;
-  column-gap: 300px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.btn
+.button
 {
-  padding: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: black;
+  width: 45%;
+  max-width: 200px;
+  padding: 10px;
 }
