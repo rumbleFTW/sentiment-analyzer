@@ -1,5 +1,4 @@
 import './style.css';
-// import React, { Component }  from 'react';
 import * as tf from '@tensorflow/tfjs';
 import tokenizer from './tokenizer.json'
 
@@ -32,8 +31,15 @@ function Panel() {
     return tf.tensor2d([res])
   }
 
-  async function analyze()
+  async function analyze(event)
   {
+    var text = []
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+    for (let [key, value] of formData.entries()) {
+      text.push([key, value])
+    }
+    console.log(text)
     const model = await tf.loadLayersModel('model.json')
     var pred = model.predict([pad(textToSequence(['my', 'sister', 'died', 'of', 'covid', 'yesterday']))])
     console.log(pred.array())
@@ -43,9 +49,9 @@ function Panel() {
     <div className='panel--outer'>
       <div className='panel--inner'>
         <h1 className='title'>SENTIMENT-ANALYZER</h1>
-        <form>
-          <textarea className='textfield' name='Text' cols="50" rows="10" required></textarea>
-          <button className='button' onClick={analyze}>Submit</button>
+        <form onSubmit={analyze}>
+          <textarea className='textfield' cols="50" rows="10" required></textarea>
+          <button className='button'>Submit</button>
         </form>
       </div>
     </div>
