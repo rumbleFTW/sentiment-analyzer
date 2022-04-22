@@ -1,8 +1,11 @@
 import './style.css';
 import * as tf from '@tensorflow/tfjs';
 import tokenizer from './tokenizer.json'
+import React, {useState} from 'react';
 
 function Panel() {
+
+  const [form, setForm] = useState("")
 
   function getTokenisedWord(seedWord) {
     const _token = tokenizer[seedWord.toLowerCase()]
@@ -31,27 +34,30 @@ function Panel() {
     return tf.tensor2d([res])
   }
 
+  function updateText(event)
+  {
+    event.preventDefault()
+    setForm(event.target.value)
+  }
+
   async function analyze(event)
   {
-    var text = []
-    const formData = new FormData(event.currentTarget);
-    event.preventDefault();
-    for (let [key, value] of formData.entries()) {
-      text.push([key, value])
-    }
-    console.log(text)
+    event.preventDefault()
+    var text = form.split(' ')
     const model = await tf.loadLayersModel('model.json')
-    var pred = model.predict([pad(textToSequence(['my', 'sister', 'died', 'of', 'covid', 'yesterday']))])
-    console.log(pred.array())
+    var pred = model.predict([pad(textToSequence(text))])
+    const ans = Array.from(pred.dataSync()).indexOf(Math.max(...Array.from(pred.dataSync())))
+    const labels_dict = {0:'sadness', 1:'joy', 2:'love', 3:'anger', 4:'fear', 5:'surprise'}
+    console.log(labels_dict[ans])
   }
 
   return (
     <div className='panel--outer'>
       <div className='panel--inner'>
         <h1 className='title'>SENTIMENT-ANALYZER</h1>
-        <form onSubmit={analyze}>
-          <textarea className='textfield' cols="50" rows="10" required></textarea>
-          <button className='button'>Submit</button>
+        <form>
+          <textarea placeholder='Enter your text' className='textfield' cols="50" rows="10" required onChange={updateText}/>
+          <button type='submit' className='button' onClick={analyze}>Submit</button>
         </form>
       </div>
     </div>
