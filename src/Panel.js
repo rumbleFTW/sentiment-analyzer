@@ -1,7 +1,7 @@
 import './style.css';
 import * as tf from '@tensorflow/tfjs';
 import tokenizer from './tokenizer.json'
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 
 function Panel() {
 
@@ -25,7 +25,7 @@ function Panel() {
   function pad(sequence)
   {
     var res = []
-    const maxlen = 66;
+    const maxlen = 167;
     for(var i = 0; i<maxlen-sequence.length; i++)
     {
       res.push(0)
@@ -44,11 +44,11 @@ function Panel() {
   {
     event.preventDefault()
     var text = form.split(' ')
-    const model = await tf.loadLayersModel('model.json')
+    const model = await tf.loadLayersModel('./model/model.json')
     var pred = model.predict([pad(textToSequence(text))])
     const ans = Array.from(pred.dataSync()).indexOf(Math.max(...Array.from(pred.dataSync())))
-    const labels_dict = {0:'sadness', 1:'joy', 2:'love', 3:'anger', 4:'fear', 5:'surprise'}
-    console.log(labels_dict[ans])
+    const dictEmotion = {0: 'joy', 1: 'fear', 2: 'anger', 3: 'sadness', 4: 'disgust', 5: 'shame' , 6: 'guilt'}
+    console.log(dictEmotion[ans])
   }
 
   return (

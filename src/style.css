@@ -86,8 +86,21 @@ form
 .button
 {
   border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 30px;
   color: black;
+  width: 45%;
+  max-width: 200px;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.button:hover, .button:active
+{
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: white;
   width: 45%;
   max-width: 200px;
   padding: 10px;
@@ -96,5 +109,23 @@ form
 .title
 {
   padding-left: 7%;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+i {
+  font-size: 124px;
+  display: inline-block;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes twist-up {
+  to {
+    transform: rotateX(360deg);
+  }
 }
