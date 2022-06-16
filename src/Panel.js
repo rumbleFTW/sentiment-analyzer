@@ -49,9 +49,8 @@ function Panel() {
     const ans = Array.from(pred.dataSync()).indexOf(Math.max(...Array.from(pred.dataSync())))
     const dictEmotion = {0: 'joy', 1: 'fear', 2: 'anger', 3: 'sadness', 4: 'disgust', 5: 'shame' , 6: 'guilt'}
     const dictEmoji = {0: ['😃', '😄', '😁 '], 1: ['😨', '😬', '😱'], 2: ['😠', '💢', '😤'], 3: ['😥', '😭', '☹️'], 4: ['🤢', '💩', '🤮'], 5: ['😖', '😣', '😫'], 6: ['😅', '😓', '🥴']}
-    var renderArray = [dictEmoji[ans]];
     var container = document.getElementById('root');
-    var emoji = ['🌽', '🍇', '🍌', '🍒', '🍕', '🍷', '🍭', '💖', '💩', '🐷', '🐸', '🐳', '🎃', '🎾', '🌈', '🍦', '💁', '🔥', '😁', '😱', '🌴', '👏', '💃'];
+    var emoji = dictEmoji[ans];
     var circles = [];
 
     for (var i = 0; i < 15; i++) {
@@ -71,7 +70,7 @@ function Panel() {
       setTimeout(function() {
         var c = new Circle(range[0] + Math.random() * range[1], 80 + Math.random() * 4, color, {
           x: -0.15 + Math.random() * 0.3,
-          y: 1 + Math.random() * 1
+          y: 0.5 + Math.random() * 0.5
         }, range);
         circles.push(c);
       }, delay);
@@ -94,9 +93,12 @@ function Panel() {
       container.appendChild(this.element);
 
       this.update = function() {
-        if (_this.y > 800) {
-          _this.y = 80 + Math.random() * 4;
-          _this.x = _this.range[0] + Math.random() * _this.range[1];
+        if (_this.y > 500) {
+          _this.element.remove();
+          delete this;
+          console.log(circles.length)
+          // _this.y = 80 + Math.random() * 4;
+          // _this.x = _this.range[0] + Math.random() * _this.range[1];
         }
         _this.y += _this.v.y;
         _this.x += _this.v.x;
