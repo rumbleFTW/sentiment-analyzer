@@ -25,7 +25,7 @@ function Panel() {
   function pad(sequence)
   {
     var res = []
-    const maxlen = 167;
+    const maxlen = 200;
     for(var i = 0; i<maxlen-sequence.length; i++)
     {
       res.push(0)
@@ -48,6 +48,7 @@ function Panel() {
     var pred = model.predict([pad(textToSequence(text))])
     const ans = Array.from(pred.dataSync()).indexOf(Math.max(...Array.from(pred.dataSync())))
     const dictEmotion = {0: 'joy', 1: 'fear', 2: 'anger', 3: 'sadness', 4: 'disgust', 5: 'shame' , 6: 'guilt'}
+    const dictEmoji = {0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: ''}
     console.log(dictEmotion[ans])
   }
 

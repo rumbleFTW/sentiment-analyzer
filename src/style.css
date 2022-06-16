@@ -35,12 +35,13 @@ body
   width: 75%;
   max-width: 450px;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(2.5px);
   border-radius: 20px;
   box-shadow: 0 25px 45px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .panel--inner
@@ -48,8 +49,9 @@ body
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2.5px);
   border-radius: 20px;
+  z-index: 5;
 }
 
 .textfield
@@ -117,6 +119,19 @@ i {
   display: inline-block;
   animation: spin 1s infinite linear;
 }
+
+
+.circle {
+  margin-right: 45%;
+  width: 5rem;
+  height: 5rem;
+  z-index: 0;
+  position: absolute;
+  box-shadow: 10px 10px 30px rgb(0 0 0 / 46%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 20% 20%, rgb(119, 0, 255) 0%, rgb(83, 0, 139) 65%, rgb(0, 0, 71) 100%);
+}
+
 
 @keyframes spin {
   to {
