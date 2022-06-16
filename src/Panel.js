@@ -6,7 +6,7 @@ import React, { useState} from 'react';
 var model;
 
 window.addEventListener('load', async (event) => { 
-  model = await tf.loadLayersModel('./model/model.json')
+  model = await tf.loadLayersModel('./modelEmotion/model.json')
   console.log('Model Loaded');
 });
 
