@@ -3,10 +3,16 @@ import * as tf from '@tensorflow/tfjs';
 import tokenizer from './tokenizer.json'
 import React, { useState} from 'react';
 
+var model;
+
+window.addEventListener('load', async (event) => { 
+  model = await tf.loadLayersModel('./model/model.json')
+  console.log('Model Loaded');
+});
+
 function Panel() {
 
   const [form, setForm] = useState("")
-  var model;
 
   function getTokenisedWord(seedWord) {
     const _token = tokenizer[seedWord.toLowerCase()]
@@ -41,11 +47,6 @@ function Panel() {
     setForm(event.target.value)
   }
 
-  document.onload = function load()
-  {
-    model = await tf.loadLayersModel('./model/model.json')
-  }
-
   async function analyze(event)
   {
     event.preventDefault()
@@ -60,14 +61,14 @@ function Panel() {
     var circles = [];
 
     for (var i = 0; i < 15; i++) {
-      addCircle(i * 150, [10 + 0, 300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 + 0, -300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 - 200, -300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 + 200, 300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 - 400, -300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 + 400, 300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 - 600, -300], emoji[Math.floor(Math.random() * emoji.length)]);
-      addCircle(i * 150, [10 + 600, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 + 0, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 + 0, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 - 200, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 + 200, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 - 400, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 + 400, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 - 600, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+      addCircle(i * 950, [10 + 600, 300], emoji[Math.floor(Math.random() * emoji.length)]);
     }
 
 
@@ -76,7 +77,7 @@ function Panel() {
       setTimeout(function() {
         var c = new Circle(range[0] + Math.random() * range[1], 80 + Math.random() * 4, color, {
           x: -0.15 + Math.random() * 0.3,
-          y: 0.5 + Math.random() * 0.5
+          y: 0.5 + Math.random() * 0.1
         }, range);
         circles.push(c);
       }, delay);
@@ -93,22 +94,23 @@ function Panel() {
       /*this.element.style.display = 'block';*/
       this.element.style.opacity = 0;
       this.element.style.position = 'absolute';
+      this.element.style.top = '0px';
       this.element.style.fontSize = '26px';
       this.element.style.color = 'hsl('+(Math.random()*360|0)+',80%,50%)';
       this.element.innerHTML = c;
       container.appendChild(this.element);
 
       this.update = function() {
-        if (_this.y > 500) {
+        if (_this.y > 800) {
           _this.element.remove();
           delete this;
-          console.log(circles.length)
           // _this.y = 80 + Math.random() * 4;
           // _this.x = _this.range[0] + Math.random() * _this.range[1];
         }
         _this.y += _this.v.y;
         _this.x += _this.v.x;
         this.element.style.opacity = 1;
+        this.element.style.position = 'absolute';
         this.element.style.transform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
         this.element.style.webkitTransform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
         this.element.style.mozTransform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
@@ -131,7 +133,7 @@ function Panel() {
       <div className='panel--inner'>
         <h1 className='title'>SENTIMENT-ANALYZER</h1>
         <form>
-          <textarea placeholder='Enter your text' className='textfield' cols="50" rows="10" required onChange={updateText}/>
+          <textarea placeholder='Enter a sentence to analyze its emotion.' className='textfield' cols="50" rows="10" required onChange={updateText}/>
           <button type='submit' className='button' onClick={analyze}>Submit</button>
         </form>
       </div>
