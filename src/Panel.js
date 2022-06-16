@@ -6,6 +6,7 @@ import React, { useState} from 'react';
 function Panel() {
 
   const [form, setForm] = useState("")
+  var model;
 
   function getTokenisedWord(seedWord) {
     const _token = tokenizer[seedWord.toLowerCase()]
@@ -40,11 +41,16 @@ function Panel() {
     setForm(event.target.value)
   }
 
+  window.onload = async function load()
+  {
+    model = await tf.loadLayersModel('./model/model.json')
+  }
+
   async function analyze(event)
   {
     event.preventDefault()
     var text = form.split(' ')
-    const model = await tf.loadLayersModel('./model/model.json')
+    // const model = await tf.loadLayersModel('./model/model.json')
     var pred = model.predict([pad(textToSequence(text))])
     const ans = Array.from(pred.dataSync()).indexOf(Math.max(...Array.from(pred.dataSync())))
     const dictEmotion = {0: 'joy', 1: 'fear', 2: 'anger', 3: 'sadness', 4: 'disgust', 5: 'shame' , 6: 'guilt'}
