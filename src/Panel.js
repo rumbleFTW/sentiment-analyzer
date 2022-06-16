@@ -41,7 +41,7 @@ function Panel() {
     setForm(event.target.value)
   }
 
-  window.onload = async function load()
+  document.onload = function load()
   {
     model = await tf.loadLayersModel('./model/model.json')
   }
